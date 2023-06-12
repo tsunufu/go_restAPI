@@ -12,7 +12,7 @@ import (
 
 type IUserUsecase interface {
 	SignUp(user model.User) (model.UserResponse, error)
-	Login(user model.User) (string, error)
+	LogIn(user model.User) (string, error)
 }
 
 type userUseCase struct {
@@ -39,7 +39,7 @@ func (uu *userUseCase) SignUp(user model.User) (model.UserResponse, error) {
 	return resUser, nil
 }
 
-func (uu *userUseCase) Login(user model.User) (string, error) {
+func (uu *userUseCase) LogIn(user model.User) (string, error) {
 	storedUser := model.User{}
 	if err := uu.ur.GetUserByEmail(&storedUser, user.Email); err != nil {
 		return "", err
